@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="DialView">
+        <attr name="dv_outerBoaderWidth" format="dimension"/>
+        <attr name="dv_mediumBoaderWidth" format="dimension"/>
+        <attr name="dv_innerBoaderWidth" format="dimension"/>
+        <attr name="dv_boaderColor" format="color"/>
+        <attr name="dv_fingerColor" format="color"/>
+        <attr name="dv_boaderPadding" format="dimension"/>
+        <attr name="dv_startAngle" format="integer"/>
+        <attr name="dv_endAngle" format="integer"/>
+        <attr name="dv_progress" format="float"/>
+    </declare-styleable>
+
+</resources>
