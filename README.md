@@ -1,9 +1,10 @@
 ## DialView
 DialView
+
 A dial viw
 
 ## Screenshot
-<img src="https://raw.githubusercontent.com/TwentySevenC/DialView/master/app/dialview.gif" width="250px">
+<img src="https://raw.githubusercontent.com/TwentySevenC/DialView/master/app/dialview.gif" width="350px">
 
 ## How to use
 ```
@@ -17,9 +18,13 @@ A dial viw
         <attr name="dv_startAngle" format="integer"/>           <!--start angle-->
         <attr name="dv_endAngle" format="integer"/>             <!--end angle-->
         <attr name="dv_progress" format="float"/>               <!--finger progress-->
-    </declare-styleable>
+</declare-styleable>
     
     
-  //finger smoothly scroll to the progress value  
-  dialView.setProgressWithAnimation(progressValue);
+//finger smoothly scroll to the progress value with a animation
+//progress value from 0 to 1.0
+dialView.setProgressWithAnimation(progressValue);
+  
+dialView.setProgress(progressValue)//no animation
+  
 ```    
