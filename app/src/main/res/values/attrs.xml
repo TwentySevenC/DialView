@@ -2,15 +2,15 @@
 <resources>
 
     <declare-styleable name="DialView">
-        <attr name="dv_outerBoaderWidth" format="dimension"/>
-        <attr name="dv_mediumBoaderWidth" format="dimension"/>
-        <attr name="dv_innerBoaderWidth" format="dimension"/>
-        <attr name="dv_boaderColor" format="color"/>
-        <attr name="dv_fingerColor" format="color"/>
-        <attr name="dv_boaderPadding" format="dimension"/>
-        <attr name="dv_startAngle" format="integer"/>
-        <attr name="dv_endAngle" format="integer"/>
-        <attr name="dv_progress" format="float"/>
+        <attr name="dv_outerBorderWidth" format="dimension"/>   <!--outer border width-->
+        <attr name="dv_mediumBorderWidth" format="dimension"/>  <!--medium border width-->
+        <attr name="dv_innerBorderWidth" format="dimension"/>   <!--inner border width-->
+        <attr name="dv_borderColor" format="color"/>            <!--border color-->
+        <attr name="dv_fingerColor" format="color"/>            <!--finger color-->
+        <attr name="dv_borderPadding" format="dimension"/>      <!--boader padding-->
+        <attr name="dv_startAngle" format="integer"/>           <!--start angle-->
+        <attr name="dv_endAngle" format="integer"/>             <!--end angle-->
+        <attr name="dv_progress" format="float"/>               <!--finger progress-->
     </declare-styleable>
 
 </resources>

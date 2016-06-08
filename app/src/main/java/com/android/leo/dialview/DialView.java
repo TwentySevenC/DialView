@@ -25,23 +25,23 @@ public class DialView extends View {
 	/**
 	 * Default values
 	 */
-	private static final int DEFAULT_BOADER_COLOR = Color.BLUE;
+	private static final int DEFAULT_BORDER_COLOR = Color.BLUE;
 	private static final int DEFAULT_FINGER_COLOR = Color.BLUE;
-	private static final int DEFAULT_BOADER_PADDING = 8;
-	private static final int DEFAULT_OUTER_BOADER_WIDTH = 2;
-	private static final int DEFAULT_MEDIUM_BOADER_WIDTH = 16;
-	private static final int DEFAULT_INNER_BOADER_WIDTH = 20;
+	private static final int DEFAULT_BORDER_PADDING = 8;
+	private static final int DEFAULT_OUTER_BORDER_WIDTH = 2;
+	private static final int DEFAULT_MEDIUM_BORDER_WIDTH = 16;
+	private static final int DEFAULT_INNER_BORDER_WIDTH = 20;
 	private static final int DEFAULT_START_ANGLE = 135;
 	private static final int DEFAULT_END_ANGLE = 405;
 	private static final float DEFAULT_PROGRESS_VALUE = 0f;
 
 
-	private Paint mBoaderPaint;
+	private Paint mBorderPaint;
 	private Paint mFingerPaint;
 	/**
-	 * The color of the dial's boader
+	 * The color of the dial's border
 	 */
-	private int mBoaderColor;
+	private int mBorderColor;
 
 	/**
 	 * The color of the dial's finger
@@ -49,24 +49,24 @@ public class DialView extends View {
 	private int mFingerColor;
 
 	/**
-	 * The dial's outer boader width
+	 * The dial's outer border width
 	 */
-	private float mOuterBoaderWidth;
+	private float mOuterBorderWidth;
 
 	/**
-	 * The dial's medium boader width
+	 * The dial's medium border width
 	 */
-	private float mMediumBoaderWidth;
+	private float mMediumBorderWidth;
 
 	/**
-	 * The dial's inner boader width
+	 * The dial's inner border width
 	 */
-	private float mInnerBoaderWidth;
+	private float mInnerBorderWidth;
 
 	/**
-	 * Padding between three boaders
+	 * Padding between three Borders
 	 */
-	private float mBoaderPadding;
+	private float mBorderPadding;
 
 	/**
 	 * The start angle of the dial's boad
@@ -100,9 +100,9 @@ public class DialView extends View {
 
 	private void init(Context context, AttributeSet attrs, int defStyleAttr) {
 
-		mBoaderPaint = new Paint();
-		mBoaderPaint.setAntiAlias(true);
-		mBoaderPaint.setStyle(Paint.Style.STROKE);
+		mBorderPaint = new Paint();
+		mBorderPaint.setAntiAlias(true);
+		mBorderPaint.setStyle(Paint.Style.STROKE);
 
 		mFingerPaint = new Paint();
 		mFingerPaint.setAntiAlias(true);
@@ -112,17 +112,17 @@ public class DialView extends View {
 		TypedArray attributes = context.obtainStyledAttributes(attrs, R.styleable.DialView, defStyleAttr, 0);
 
 		try {
-			mBoaderColor = attributes.getColor(R.styleable.DialView_dv_boaderColor, DEFAULT_BOADER_COLOR);
+			mBorderColor = attributes.getColor(R.styleable.DialView_dv_borderColor, DEFAULT_BORDER_COLOR);
 			mFingerColor = attributes.getColor(R.styleable.DialView_dv_fingerColor, DEFAULT_FINGER_COLOR);
-			mBoaderPadding = attributes.getDimensionPixelSize(R.styleable.DialView_dv_boaderPadding, DEFAULT_BOADER_PADDING);
-			mInnerBoaderWidth = attributes.getDimensionPixelSize(R.styleable.DialView_dv_innerBoaderWidth, DEFAULT_INNER_BOADER_WIDTH);
-			mMediumBoaderWidth = attributes.getDimensionPixelSize(R.styleable.DialView_dv_mediumBoaderWidth, DEFAULT_MEDIUM_BOADER_WIDTH);
-			mOuterBoaderWidth = attributes.getDimensionPixelSize(R.styleable.DialView_dv_outerBoaderWidth, DEFAULT_OUTER_BOADER_WIDTH);
+			mBorderPadding = attributes.getDimensionPixelSize(R.styleable.DialView_dv_boaderPadding, DEFAULT_BORDER_PADDING);
+			mInnerBorderWidth = attributes.getDimensionPixelSize(R.styleable.DialView_dv_innerBoaderWidth, DEFAULT_INNER_BORDER_WIDTH);
+			mMediumBorderWidth = attributes.getDimensionPixelSize(R.styleable.DialView_dv_mediumBoaderWidth, DEFAULT_MEDIUM_BORDER_WIDTH);
+			mOuterBorderWidth = attributes.getDimensionPixelSize(R.styleable.DialView_dv_outerBoaderWidth, DEFAULT_OUTER_BORDER_WIDTH);
 			mStartAngle = attributes.getDimensionPixelSize(R.styleable.DialView_dv_startAngle, DEFAULT_START_ANGLE);
 			mEndAngle = attributes.getDimensionPixelSize(R.styleable.DialView_dv_endAngle, DEFAULT_END_ANGLE);
 			mProgress = attributes.getFloat(R.styleable.DialView_dv_progress, DEFAULT_PROGRESS_VALUE);
 			mFingerPaint.setColor(mFingerColor);
-			mBoaderPaint.setColor(mBoaderColor);
+			mBorderPaint.setColor(mBorderColor);
 		} finally {
 			attributes.recycle();
 		}
@@ -132,31 +132,31 @@ public class DialView extends View {
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
-		mBoaderPaint.setColor(mBoaderColor);
-		mBoaderPaint.setStrokeWidth(mOuterBoaderWidth);
+		mBorderPaint.setColor(mBorderColor);
+		mBorderPaint.setStrokeWidth(mOuterBorderWidth);
 		int width = getWidth();
 		int height = getHeight();
 		//Get the outermost layer radius of the dial
 		int radius = width >= height ? height / 2 : width / 2;
-		float outerDelta = radius - mOuterBoaderWidth / 2;//outermost layer radius
+		float outerDelta = radius - mOuterBorderWidth / 2;//outermost layer radius
 		RectF rectF = new RectF(width / 2 - outerDelta, height / 2 - outerDelta, width / 2 + outerDelta, height / 2 + outerDelta);
-		canvas.drawArc(rectF, mStartAngle, mEndAngle - mStartAngle, false, mBoaderPaint);//draw outermost layer boader
+		canvas.drawArc(rectF, mStartAngle, mEndAngle - mStartAngle, false, mBorderPaint);//draw outermost layer boader
 
-		mBoaderPaint.setStrokeWidth(mMediumBoaderWidth);
-		float mediumDelta = radius - mOuterBoaderWidth / 2 - mBoaderPadding - mMediumBoaderWidth / 2;//medium layer radius
+		mBorderPaint.setStrokeWidth(mMediumBorderWidth);
+		float mediumDelta = radius - mOuterBorderWidth / 2 - mBorderPadding - mMediumBorderWidth / 2;//medium layer radius
 		rectF = new RectF(width / 2 - mediumDelta, height / 2 - mediumDelta,
 				width / 2 + mediumDelta, height / 2 + mediumDelta);
-		canvas.drawArc(rectF, mStartAngle, mEndAngle - mStartAngle, false, mBoaderPaint);//draw medium layer boader
+		canvas.drawArc(rectF, mStartAngle, mEndAngle - mStartAngle, false, mBorderPaint);//draw medium layer boader
 
 		canvas.save();
 		canvas.translate(width / 2, height / 2);
-		mBoaderPaint.setStrokeWidth(1f);
-		float lineStart = radius - mOuterBoaderWidth - mBoaderPadding * 2 - mMediumBoaderWidth - mInnerBoaderWidth;
-		float lineEnd = lineStart + mInnerBoaderWidth;
+		mBorderPaint.setStrokeWidth(1f);
+		float lineStart = radius - mOuterBorderWidth - mBorderPadding * 2 - mMediumBorderWidth - mInnerBorderWidth;
+		float lineEnd = lineStart + mInnerBorderWidth;
 		canvas.rotate(mStartAngle);
-		//draw inner layer boader
+		//draw inner layer border
 		for (int i = 0; i <= (mEndAngle - mStartAngle) / 2; i++) {
-			canvas.drawLine(lineStart, 0, lineEnd, 0, mBoaderPaint);
+			canvas.drawLine(lineStart, 0, lineEnd, 0, mBorderPaint);
 			canvas.rotate(2);
 		}
 		canvas.restore();
@@ -164,7 +164,7 @@ public class DialView extends View {
 		canvas.save();
 		canvas.translate(width / 2, height / 2);
 		//draw dial's finger
-		float fingerLength = radius - mOuterBoaderWidth - mBoaderPadding * 2 - mMediumBoaderWidth - mInnerBoaderWidth - mBoaderPadding * 2;
+		float fingerLength = radius - mOuterBorderWidth - mBorderPadding * 2 - mMediumBorderWidth - mInnerBorderWidth - mBorderPadding * 2;
 		float fingerWidth = fingerLength / 15;
 		float fingerAnger = (mEndAngle - mStartAngle) * mProgress + mStartAngle;
 		Path fingerPath = generateFingerPath(fingerLength, fingerWidth, fingerAnger);
@@ -214,20 +214,20 @@ public class DialView extends View {
 	}
 
 
-	public int getBoaderColor() {
-		return mBoaderColor;
+	public int getBorderColor() {
+		return mBorderColor;
 	}
 
-	public void setBoaderColor(int boaderColor) {
-		mBoaderColor = boaderColor;
+	public void setBorderColor(int borderColor) {
+		mBorderColor = borderColor;
 	}
 
-	public float getBoaderPadding() {
-		return mBoaderPadding;
+	public float getBorderPadding() {
+		return mBorderPadding;
 	}
 
-	public void setBoaderPadding(float boaderPadding) {
-		mBoaderPadding = boaderPadding;
+	public void setBorderPadding(float borderPadding) {
+		mBorderPadding = borderPadding;
 	}
 
 	public int getEndAngle() {
@@ -246,28 +246,28 @@ public class DialView extends View {
 		mFingerColor = fingerColor;
 	}
 
-	public float getInnerBoaderWidth() {
-		return mInnerBoaderWidth;
+	public float getInnerBorderWidth() {
+		return mInnerBorderWidth;
 	}
 
-	public void setInnerBoaderWidth(float innerBoaderWidth) {
-		mInnerBoaderWidth = innerBoaderWidth;
+	public void setInnerBorderWidth(float innerBorderWidth) {
+		mInnerBorderWidth = innerBorderWidth;
 	}
 
-	public float getMediumBoaderWidth() {
-		return mMediumBoaderWidth;
+	public float getMediumBorderWidth() {
+		return mMediumBorderWidth;
 	}
 
-	public void setMediumBoaderWidth(float mediumBoaderWidth) {
-		mMediumBoaderWidth = mediumBoaderWidth;
+	public void setMediumBorderWidth(float mediumBorderWidth) {
+		mMediumBorderWidth = mediumBorderWidth;
 	}
 
-	public float getOuterBoaderWidth() {
-		return mOuterBoaderWidth;
+	public float getOuterBorderWidth() {
+		return mOuterBorderWidth;
 	}
 
-	public void setOuterBoaderWidth(float outerBoaderWidth) {
-		mOuterBoaderWidth = outerBoaderWidth;
+	public void setOuterBorderWidth(float outerBorderWidth) {
+		mOuterBorderWidth = outerBorderWidth;
 	}
 
 	public float getProgress() {
