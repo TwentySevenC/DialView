@@ -1,7 +1,7 @@
 ## DialView
 DialView
 
-A dial viw
+A dial view
 
 ## Screenshot
 <img src="https://raw.githubusercontent.com/TwentySevenC/DialView/master/app/dialview.gif" width="350px">
